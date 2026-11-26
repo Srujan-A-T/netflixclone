@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import "./Navbar.css"
 import logo from '../../assets/logo.png'
 import search_icon from '../../assets/search_icon.svg'
 import bell_icon from '../../assets/bell_icon.svg'
 import profile_icon from '../../assets/profile_img.png'
 import dropdown_icon from '../../assets/caret_icon.svg'
+import { logout } from '../../firebase.js'
 
 const Navbar = () => {
+
+  const navref=useRef();
+
+  useEffect(()=>{
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>=80){
+        navref.current.classList.add('nav-dark')
+      }else{
+        navref.current.classList.remove('nav-dark')
+      }
+    })
+  },[])
+
   return (
-    <div className='navbar'>
+    <div ref={navref} className='navbar'>
       <div className="navbar-left">
         <img src={logo} alt="logo" />
         <ul>
@@ -28,13 +42,13 @@ const Navbar = () => {
         <img src={profile_icon} alt="profile_icon"  className='profile'/>
         <img src={dropdown_icon} alt="dropdown_icon" />
         <div className="dropdown">
-          <p>Sign out of Netflix</p>
+          <p onClick={()=>{logout()}}>Sign out of Netflix</p>
         </div>
         </div>
       </div>
     </div>
   )
 }
-import "./Navbar.css"
+
 
 export default Navbar 
