@@ -61,7 +61,7 @@ git clone https://github.com/Srujan-A-T/netflixclone.git
 ### 2. Navigate to the project directory
 
 ```bash
-cd Netflix-Clone
+cd netflixclone
 ```
 
 ### 3. Install dependencies
